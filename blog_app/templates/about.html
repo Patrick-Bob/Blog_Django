@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+    <h3>About</h3>
+    <hr>
+    <p>
+        Orxan Aslanov  astronomiya və futbol dəlisi)
+        
+        {% for item in items %}
+        <div class="card w-75">
+            <div class="card-body">
+              <h5 class="card-title">Todo item</h5>
+              <p class="card-text"> {{ item }} </p>
+              <a href="#" class="btn btn-primary">Detail</a>
+            </div>
+        </div>
+     {% endfor %}
+    </p>
+
+{% endblock body %}

@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<div class ="row">
+    
+        <div class="col-md-10 offset-md-3">
+            <div class="col-lg-8">
+                <h3>Blogs</h3>
+                <hr>
+                </div>
+        </div>
+</div>
+
+<div class ="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <form>
+                 {% csrf_token %} 
+                <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Search...">
+              <button type="submit" class="btn btn-danger">Search</button>
+            </form>
+      </div>
+    </div>
+
+{% if articles  %}
+
+{% for article in articles  %}
+
+ <div class="row">
+    <div class="col-md-10 offset-md-3"> 
+
+                <div class="col-lg-8">
+
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">{{article.name}}</h1>
+                            <!-- Post meta content-->
+                            <h3>Published by {{article.author.username}}</h3>
+
+                            <h3> {{article.pub_date}}</h3>
+
+                        </header>
+
+                          {% if article.article_image %}
+                            <img class="img-fluid rounded" src="{{article.article_image.url}}" alt="">
+                            {% endif %}
+                        
+                        
+                        
+                        <!-- Post content-->
+                        <section class="mb-5">
+                         <p>{{article.content|safe | truncatewords:10}}</p>
+                            <a href="/article/{{article.id}}" class = "btn btn-danger">Read more</a>
+                        
+                        </section>
+
+                    </article>
+                   
+                    </div>
+                    </div>
+                    </div>
+
+
+{% endfor %}
+
+
+
+{% else %}
+    <div class = "alert alert-danger"> 
+        Blog can`t find
+    </div>
+
+{% endif %}
+{% endblock body %}
+

@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+    <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">{{article.name}}</h1>
+                            <!-- Post meta content-->
+                            <h3>{{article.author.username}}</h3>
+
+                        </header>
+
+                            <img class="img-fluid rounded" src="{{article_image.url}}" alt="">
+                        
+                        
+                        
+                        <!-- Post content-->
+                        <section class="mb-5">
+                         <p>{{article.content|safe}}</p>
+                        </section>
+                    </article>
+          
+
+          {% if comments %}
+          {% for comment in comments  %}
+
+             <div class="media mb-4">
+             
+                  <img class="img-fluid rounded" src="{{article_image.url}}" alt="">
+         
+          {% comment %} <img class="d-flex mr-3 rounded-circle" src="{{article.article_image.url}}" alt=""> {% endcomment %}
+          <div class="media-body">
+            <h5 class="mt-0">{{ comment.comment_author}}</h5>
+            <br>
+            {{comment.comment_content}}
+          </div>
+        </div>
+
+          
+          {% endfor %}
+
+          {% else %}
+
+            <div class  = "alert alert-danger">There is no comments </div>
+          {% endif %}
+                   
+ <div class="card my-4">
+                         
+     <h5 class = "card-header">Leave a comment:</h5>
+
+     <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input name = "comment_author" class="form-control"  placeholder="Enter  your username">
+     </div>
+    
+    <div class = "card-body">
+            <form  method ="Post" action="{% url 'comment' article.id %}">
+            {% csrf_token %}
+            <div>
+            <textarea  name= "comment_content"class ="form-control" rows ="3"> </textarea>
+            </div>
+            <button type = "submit" class = "btn btn-danger">Submit</button>
+            </form>        
+        
+        
+        
+        </div>
+        
+        </div>
+
+
+
+
+</div>
+
+
+{% endblock body %}
+
+
+
+
+

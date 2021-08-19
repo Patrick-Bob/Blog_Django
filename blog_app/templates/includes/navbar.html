@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="{% url 'index' %}">Bikinis` Blogs</a>
+
+  {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> {% endcomment %}
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'articles'  %}">Blogs <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about' %}">About</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+
+      {% if user.is_authenticated %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/logout"> Sign Out</a>
+      </li>
+
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url 'dashboard' %}"> Dashboard</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/login">Log In</a>
+      </li>
+
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/register">Sign Up</a>
+      </li>
+
+
+
+    </ul>
+  </div>
+
+</nav>

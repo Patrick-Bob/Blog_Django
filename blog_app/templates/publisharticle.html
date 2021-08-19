@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-3 offset-md-3"> 
+    <h2>Publish Article</h2>
+
+    <hr>
+
+    <form method = "POST" action="{% url 'publisharticle' %}">
+        {% csrf_token %}
+        {{pform.media }}
+        {{form.as_p}}
+
+    <button type = "submit" class= "btn btn-danger"> Publish</button>
+    </form>
+   
+                                        </div>
+</div>
+   
+
+{% endblock body %}
+
+
